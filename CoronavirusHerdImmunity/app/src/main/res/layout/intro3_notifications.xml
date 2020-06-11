@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <ImageView
+        style="@style/background_image"
+        android:src="@drawable/ic_illustration_notifications" />
+
+    <!-- Location -->
+    <TextView
+        android:id="@+id/notifications"
+        style="@style/intro_title"
+        android:paddingTop="70dp"
+        android:text="@string/all_set"/>
+
+    <!-- To monitor more accurately your interactions we will
+    ask you permission to use Location. It's anonymous. -->
+    <TextView
+        android:id="@+id/we_need_you_notif"
+        style="@style/intro_subtitle"
+        android:layout_below="@id/notifications"/>
+
+    <!-- BUTTON -->
+    <Button style="@style/button_primary"
+        android:shadowColor="@color/white"
+        android:id="@+id/button_next"
+        android:text="@string/give_notif"  />
+
+    <!-- UNDERBUTTON -->
+    <Button style="@style/underbutton"
+        android:id="@+id/button_skip"
+        android:text="@string/cancel" />
+
+</RelativeLayout>

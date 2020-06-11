@@ -1,0 +1,58 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="0dp"
+    android:background="#00555555">
+
+    <LinearLayout
+        android:id="@+id/layout_patient_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:paddingBottom="50dp"
+        android:orientation="vertical"
+        android:background="@drawable/background_white">
+
+        <Button
+            android:id="@+id/button_cancel"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/ic_icon_x" />
+
+        <TextView
+            android:id="@+id/tv_scanner_success"
+            style="@style/intro_subtitle"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="0dp"
+            android:text="@string/your_id_is"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <com.example.coronavirusherdimmunity.models.AutoResizeTextView
+            android:id="@+id/tv_formatted_id"
+            style="@style/intro_title"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="@drawable/background_primary_transparent"
+            tools:text="00-00"
+            android:ellipsize="none"
+            android:maxLines="1"
+            android:textSize="42sp"
+            tools:ignore="EllipsizeMaxLines" />
+
+    </LinearLayout>
+
+</RelativeLayout>

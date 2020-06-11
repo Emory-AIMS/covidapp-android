@@ -1,0 +1,179 @@
+<resources>
+
+    <!--__________ TITLES ______________________________________________________________________-->
+    <string name="app_name">CovidApp</string>
+    <string name="app_title">Covid Community Alert</string>
+    <string name="splash_title_first">ovid</string>
+    <string name="splash_title_next">App</string>
+    <string name="splash_subtitle">Covid Community Alert</string>
+
+    <!--__________ MAIN SCREEN _________________________________________________________________-->
+    <string name="main_title">Fatto! &#129303; </string>
+    <string name="if_you_got_close">Ricorda di lasciare il Bluetooth e la posizione accesi,
+        e noi faremo il resto.</string>
+    <string name="how_it_works">Come funziona &#129300; </string>
+    <string name="how_it_works_no_emoji">Come funziona</string>
+    <string name="show_id">Mostra codice</string>
+    <string name="read_more">Più informazioni</string>
+    <string name="your_id_is">Il tuo codice identificativo è:\n</string>
+    <string name="id_explaination">Il dottore potrebbe chiederti questo codice per avvertire
+        anonimamente le persone a rischio.</string>
+
+    <!--__________ STATUS ______________________________________________________________________-->
+    <string name="status_normal">Nessun rischio rilevato</string>
+    <string name="status_infected">Infetto</string>
+    <string name="status_healed">Guarito</string>
+    <string name="status_suspect">Sospetto</string>
+    <string name="status_lowrisk">Basso rischio rilevato</string>
+    <string name="status_mediumrisk">Medio rischio rilevato</string>
+    <string name="status_highrisk">Alto rischio rilevato</string>
+
+    <string name="title_normal">Nessun rischio rilevato</string>
+    <string name="title_infected"><![CDATA[
+    <font color=\'#333333\'>Sei risultato positivo al </font><font color=\'#E20A19\'>Coronavirus.</font>
+    ]]></string>
+    <string name="title_healed">Sei guarito!</string>
+    <string name="title_suspect">Sei un caso sospetto di Coronavirus.</string>
+    <string name="title_lowrisk">Basso rischio rilevato</string>
+    <string name="title_mediumrisk">Medio rischio rilevato</string>
+    <string name="title_highrisk">Alto rischio rilevato</string>
+
+
+    <string name="dont_panic"><b>Non avere paura.</b></string>
+    <!--Punto 5:
+    http://www.salute.gov.it/portale/malattieInfettive/dettaglioFaqMalattieInfettive.jsp?lingua=italiano&id=228 -->
+    <string name="call_emergency"><b>In caso di sintomi, chiama immediatamente il tuo medico di famiglia
+        o la guardia medica.</b></string>
+
+    <string name="description_normal">Non sei stato vicino a nessuna persona infetta.</string>
+    <string name="description_infected">Sei risultato positivo al Coronavirus.
+        Resta a casa per proteggere te e le persone intorno a te.</string>
+    <string name="description_healed">Ce l\'hai fatta! Sei al sicuro adesso.</string>
+    <string name="description_suspect">Sei stato a contatto con una persona che è risultata positiva
+        al Coronavirus. Resta a casa per proteggere te e le persone intorno a te.</string>
+
+    <string name="description_lowrisk">Sei stato a contatto con una persona sospetta
+        al Coronavirus. Resta a casa per proteggere te e le persone intorno a te.</string>
+    <string name="description_mediumrisk">Sei stato brevemente a contatto con una persona che è risultata positiva
+        al Coronavirus. Resta a casa per proteggere te e le persone intorno a te.</string>
+    <string name="description_highrisk">Sei stato a contatto con una persona che è risultata positiva
+        al Coronavirus. Resta a casa per proteggere te e le persone intorno a te.</string>
+
+    <!--__________ INTRODUCTION ________________________________________________________________-->
+    <string name="welcome"><![CDATA[
+    Welcome to<br/>anonymous <br/><font color=\'#FF6F61\'>CovidCommunity</font><br/>Alert &#128075;
+    ]]> </string>
+    <string name="together_we">Insieme possiamo salvare vite. </string>
+    <string name="let_s_get_s">INIZIA! </string>
+    <string name="text_progbar">Registra dispositivo…</string>
+    <string name="toast_error_regdev">Errore, perfavore cliccare il bottone di nuovo</string>
+
+    <string name="we_need_you_blueto">Useremo il tuo Bluetooth per monitorare la distanza
+        tra il tuo telefono ed altri dispositivi.\n<b>È anonimo!</b></string>
+    <string name="give_blueto">ACCENDI IL BLUETOOTH</string>
+
+    <string name="location">Rilevamento Distanza</string>
+    <string name="we_need_you_loc">Useremo il tuo Rilevamento Distanza per approssimare più
+        precisamente le interazioni.\n<b>È anonimo!</b></string>
+    <string name="give_loc">ATTIVA RILEVAMENTO DISTANZA</string>
+
+    <string name="help_community">Aiuta la tua Comunità</string>
+    <string name="we_need_you_dist">Per aiutare i medici con la ricerca e l’analisi di questa crisi,
+        \npuoi decidere di condividere in <b>anonimo</b> la tua Posizione.\nQuesto non è obbligatorio,
+        e aiuterà solo se tu decidi di farlo.</string>
+    <string name="give_dist">CONDIVIDI POSIZIONE</string>
+    <string name="no_dist">NON ADESSO</string>
+
+    <string name="all_set">Fatto!</string>
+    <string name="we_need_you_notif">Se sei stato vicino a una persona infetta nelle ultime due settimane, ti faremo sapere.</string>
+    <string name="by_clicking">Continuando e cliccando su “Accetta e continua!”, accetti i \ </string>
+    <string name="tos">Termini di Servizio e la Politica di Privacy.</string>
+    <string name="give_notif">ACCETTA E CONTINUA!</string>
+    <!--________________________________________________________________________________________-->
+
+
+
+    <!--__________ QUESTIONS - ANSWERS _________________________________________________________-->
+    <string name="how_it_works_p0">Usiamo il segnale Bluetooth per individuare anonimamente i dispositivi
+        nelle vicinanze, e la durata delle interazioni con questi dispositivi. </string>
+
+    <string name="how_it_works_q2">Come manteniamo il tuo anonimato?</string>
+    <string name="how_it_works_p2">Salviamo solo le interazioni tra il tuo telefono e altri dispositivi,
+        e per quanto tempo sono durate.\nNon salviamo nessun\'altra informazione personale o cronologia delle posizioni.</string>
+
+    <string name="how_it_works_q1">Come ti proteggiamo?</string>
+    <string name="how_it_works_p1">Se una delle persone con cui hai interagito negli ultimi 14 giorni è diagnosticata con Coronavirus,
+        sarai avvertito tramite una notifica.</string>
+
+    <string name="how_it_works_q3">Come facciamo a sapere chi è malato?</string>
+    <string name="how_it_works_p3">Solo medici professionisti possono diagnosticare se un paziente è positivo al virus. In quel caso,
+        il dottore userà il codice QR e notificherà le persone che sono a rischio perché hanno interagito con il paziente infetto.</string>
+
+    <string name="how_it_works_q4">Che succede se ricevi la notifica che potresti essere a rischio?</string>
+    <string name="how_it_works_p4">Innanzi tutto, non spaventarti:
+        \nSignifica che hai interagito con una persona che è risultata positiva al Covid-19 oppure è sospetta.
+        \nRiceverai istruzioni precise dal virologo.</string>
+
+    <string name="how_it_works_q5">Come puoi essere d\'aiuto?</string>
+    <string name="how_it_works_p5">Lascia semplicemente quest\'app attiva, e noi faremo il resto.
+        Se vuoi aiutarci, condividi questa app con i tuoi cari per tenerli al sicuro.</string>
+    <!--________________________________________________________________________________________-->
+
+
+
+    <!--__________ SHARE SOCIALS _______________________________________________________________-->
+    <string name="help_us_title">Aiutaci a proteggere te e i tuoi cari.</string>
+    <string name="share_app_title">Condividi l\'app su:</string>
+    <string name="share_app_subtitle">Più persone hanno quest\'app, più saremo
+        capaci di proteggerti e agire per fermare questo virus.</string>
+    <string name="facebook">Facebook</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="twitter">Twitter</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="messenger">Messenger</string>
+    <string name="sms">SMS</string>
+    <string name="email">E-mail</string>
+    <string name="link">Copia link</string>
+    <string name="other">Altro</string>
+
+    <!--__________ PERMISSIONS _________________________________________________________________-->
+    <string name="blue_disabled">Il Bluetooth è disabilitato </string>
+    <string name="blue_please_en">Attiva il Bluetooth </string>
+    <string name="loc_disabled">La Posizione è disabilitata </string>
+    <string name="loc_please_en">Perfavore, attiva la Posizione perché l\' App la usa per comunicare col Bluetooth</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="blue_notsupported">Bluetooth LE non è disponibile</string>
+    <string name="blue_msg_notsupported">Ci dispiace, questo dispositivo non supporta Bluetooth LE</string>
+
+    <!--__________ STEPS _______________________________________________________________________-->
+    <string name="cancel">ANNULLA</string>
+    <string name="step_1_of_3">Pagina 1 di 3 </string>
+    <string name="step_2_of_3">Pagina 2 di 3 </string>
+    <string name="step_3_of_3">Pagina 3 di 3 </string>
+    <string name="skip_step">SALTA</string>
+
+    <!--__________ UTILS _______________________________________________________________________-->
+    <string name="status">STATO</string>
+    <string name="app_status">STATO APP</string>
+    <string name="user_status">STATO UTENTE</string>
+    <string name="status_active">Attivo</string>
+    <string name="status_inactive">Inattivo</string>
+    <string name="n_interactions">DISPOSITIVI INCONTRATI</string>
+    <string name="n_interactions_value">0 </string>
+    <string name="qr_code">Codice QR</string>
+    <string name="alert_exit_title">Esci</string>
+    <string name="alert_exit_msg">Sei sicuro di voler uscire?</string>
+    <string name="alert_exit_pos_bt">Sì</string>
+    <string name="alert_exit_neg_bt">No</string>
+
+    <!--__________ NOTIFICATIONS _______________________________________________________________-->
+    <string name="permanent_notification">Stato: %s - %s </string>
+    <string name="notification_appstatus_title">Stato App è Inattivo:</string>
+    <string name="notification_appstatus_msg">Perfavore, attivare i permessi nell\' App.</string>
+
+    <!--__________ MONITORING __________________________________________________________________-->
+    <string name="bt_enable_mon">Re-Enable Monitoring </string>
+    <string name="bt_disable_mon">Disable Monitoring </string>
+
+
+</resources>

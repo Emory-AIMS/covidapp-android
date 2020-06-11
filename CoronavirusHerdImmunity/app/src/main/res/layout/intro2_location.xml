@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <!-- illustration_bluetooth -->
+    <ImageView
+        style="@style/background_image"
+        android:id="@+id/logo_id"
+        android:src="@drawable/ic_illustration_location_map" />
+
+    <!-- Step 2 of 3 -->
+    <TextView
+        style="@style/steps_text"
+        android:id="@+id/step_2_of_3"
+        android:text="@string/step_2_of_3" />
+
+    <!-- Location -->
+    <TextView
+        style="@style/intro_title"
+        android:id="@+id/location"
+        android:text="@string/location"
+        android:layout_below="@id/step_2_of_3"/>
+
+
+    <!-- To monitor more accurately your interactions we will
+    ask you permission to use Location. It's anonymous. -->
+    <TextView
+        style="@style/intro_subtitle"
+        android:id="@+id/we_need_you_loc"
+        android:text="@string/we_need_you_loc"
+        android:layout_below="@id/location"/>
+
+    <!-- BUTTON -->
+    <Button style="@style/button_primary"
+        android:id="@+id/button_next"
+        android:shadowColor="@color/white"
+        android:text="@string/give_loc" />
+
+    <!-- UNDERBUTTON -->
+    <Button style="@style/underbutton"
+        android:id="@+id/button_skip"
+        android:text="@string/skip_step" />
+
+</RelativeLayout>
