@@ -36,7 +36,7 @@ import org.json.simple.JSONValue;
 
 public class ApiManager {
 
-    private static final String baseEndoint = "http://ec2-52-53-189-28.us-west-1.compute.amazonaws.com";
+    private static final String baseEndoint = "http://170.140.147.96";
 //    private static final String baseEndoint = " https://api.coronaviruscheck.org";
 //
     private static final MediaType JSONContentType = MediaType.parse("application/json; charset=utf-8");
