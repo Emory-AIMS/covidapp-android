@@ -14,10 +14,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+//import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         preferenceManager = new PreferenceManager(this);
         preferenceManager.setFirstTimeLaunch(false);
+
+        Toolbar toolbar = findViewById(id.toolbar);
+        toolbar.setTitle("");
+
+        setSupportActionBar(toolbar);
+
 
         // De-comment to test different statuses
         //preferenceManager.setPatientStatus(0);
@@ -421,4 +431,82 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu
+        getMenuInflater().inflate(R.menu.menu, menu);
+        //if the location permission is true, set the share location option checked and set the privacy parameters
+        if (preferenceManager.getUserLocationPermission()) {
+            Menu optionsMenu = menu;
+            MenuItem itemShareLocation = optionsMenu.findItem(R.id.action_share_location);
+            itemShareLocation.setChecked(true);
+            String privacy_level = preferenceManager.getPrivacyLevel();
+            switch (privacy_level) {
+                case "None":
+                    MenuItem itemPrivacyLevelN = optionsMenu.findItem(R.id.privacy_level_none);
+                    itemPrivacyLevelN.setChecked(true);
+                    break;
+                case "Low":
+                    MenuItem itemPrivacyLevelL = optionsMenu.findItem(R.id.privacy_level_low);
+                    itemPrivacyLevelL.setChecked(true);
+                    break;
+                case "Medium":
+                    MenuItem itemPrivacyLevelM = optionsMenu.findItem(R.id.privacy_level_medium);
+                    itemPrivacyLevelM.setChecked(true);
+                    break;
+                case "High":
+                    MenuItem itemPrivacyLevelH = optionsMenu.findItem(R.id.privacy_level_high);
+                    itemPrivacyLevelH.setChecked(true);
+                    break;
+            }
+        }
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks.
+        switch (item.getItemId()) {
+            case R.id.action_share_location:
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                    preferenceManager.setUserLocationPermission(false);
+                }
+                else item.setChecked(true);
+                    preferenceManager.setUserLocationPermission(true);
+                return true;
+            case R.id.privacy_level_none:
+                item.setChecked(true);
+                preferenceManager.setPrivacyLevel("None");
+                return true;
+            case R.id.privacy_level_low:
+                item.setChecked(true);
+                preferenceManager.setPrivacyLevel("Low");
+                return true;
+            case R.id.privacy_level_medium:
+                item.setChecked(true);
+                preferenceManager.setPrivacyLevel("Medium");
+                return true;
+            case R.id.privacy_level_high:
+                item.setChecked(true);
+                preferenceManager.setPrivacyLevel("High");
+                return true;
+//            case R.id.privacy_radius_200:
+//                item.setChecked(true);
+//                preferenceManager.setPrivacyRadius(200);
+//                return true;
+//            case R.id.privacy_radius_500:
+//                item.setChecked(true);
+//                preferenceManager.setPrivacyRadius(500);
+//                return true;
+//            case R.id.privacy_radius_800:
+//                item.setChecked(true);
+//                preferenceManager.setPrivacyRadius(800);
+//                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
+

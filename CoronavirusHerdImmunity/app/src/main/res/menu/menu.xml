@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/action_share_location"
+        android:orderInCategory="300"
+        android:title="Share Location"
+        app:showAsAction="never"
+        android:checkable="true"></item>
+<!--    <item-->
+<!--        android:id="@+id/switchOnOffItem"-->
+<!--        android:title=""-->
+<!--        android:actionLayout="@layout/share_location_switch"-->
+<!--        app:showAsAction="ifRoom"/>-->
+
+<!--    <item-->
+<!--        android:id="@+id/privacy_radius"-->
+<!--        android:orderInCategory="300"-->
+<!--        android:title="Set Privacy Radius"-->
+<!--        app:showAsAction="never">-->
+<!--        <menu>-->
+<!--            <group-->
+<!--                android:checkableBehavior="single">-->
+<!--                <item-->
+<!--                    android:id="@+id/privacy_radius_200"-->
+
+<!--                    android:title="200 m"-->
+<!--                    app:showAsAction="never"></item>-->
+<!--                <item-->
+<!--                    android:id="@+id/privacy_radius_500"-->
+<!--                    android:title="500 m"-->
+<!--                    app:showAsAction="never"></item>-->
+<!--                <item-->
+<!--                    android:id="@+id/privacy_radius_800"-->
+<!--                    android:title="800 m"-->
+<!--                    app:showAsAction="never"></item>-->
+<!--            </group>-->
+<!--        </menu>-->
+<!--        </item>-->
+
+    <item
+        android:id="@+id/privacy_level"
+        android:orderInCategory="300"
+        android:title="Set Privacy Level"
+        app:showAsAction="never">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/privacy_level_none"
+                    android:title="None"
+                    app:showAsAction="never">
+                </item>
+                <item
+                    android:id="@+id/privacy_level_low"
+                    android:title="Low"
+                    app:showAsAction="never">
+                  </item>
+                <item
+                    android:id="@+id/privacy_level_medium"
+                    android:title="Medium"
+                    app:showAsAction="never"></item>
+                <item
+                    android:id="@+id/privacy_level_high"
+                    android:title="High"
+                    app:showAsAction="never"></item>
+            </group>
+        </menu>
+    </item>
+
+</menu>
