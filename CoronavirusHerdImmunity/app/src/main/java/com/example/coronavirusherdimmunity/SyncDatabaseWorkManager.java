@@ -79,8 +79,8 @@ public class SyncDatabaseWorkManager extends Worker {
                     lastGroup.interval = (int) Math.abs(lastGroup.timestmp - beacon.timestmp) + 10;
 
                     if (sendUserLocation) {
-                        lastGroup.x = beacon.x;
-                        lastGroup.y = beacon.y;
+                        lastGroup.x = beacon.perturbed_x;
+                        lastGroup.y = beacon.perturbed_y;
                     } else {
                         lastGroup.x = 0;
                         lastGroup.y = 0;

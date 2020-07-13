@@ -436,31 +436,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu
         getMenuInflater().inflate(R.menu.menu, menu);
-        //if the location permission is true, set the share location option checked and set the privacy parameters
+        Menu optionsMenu = menu;
+        //if the location permission is true, set the share location option checked
         if (preferenceManager.getUserLocationPermission()) {
-            Menu optionsMenu = menu;
+
             MenuItem itemShareLocation = optionsMenu.findItem(R.id.action_share_location);
             itemShareLocation.setChecked(true);
-            String privacy_level = preferenceManager.getPrivacyLevel();
-            switch (privacy_level) {
-                case "None":
-                    MenuItem itemPrivacyLevelN = optionsMenu.findItem(R.id.privacy_level_none);
-                    itemPrivacyLevelN.setChecked(true);
-                    break;
-                case "Low":
-                    MenuItem itemPrivacyLevelL = optionsMenu.findItem(R.id.privacy_level_low);
-                    itemPrivacyLevelL.setChecked(true);
-                    break;
-                case "Medium":
-                    MenuItem itemPrivacyLevelM = optionsMenu.findItem(R.id.privacy_level_medium);
-                    itemPrivacyLevelM.setChecked(true);
-                    break;
-                case "High":
-                    MenuItem itemPrivacyLevelH = optionsMenu.findItem(R.id.privacy_level_high);
-                    itemPrivacyLevelH.setChecked(true);
-                    break;
-            }
         }
+
+//      set the privacy parameter
+        String privacy_level = preferenceManager.getPrivacyLevel();
+        switch (privacy_level) {
+            case "N":
+                MenuItem itemPrivacyLevelN = optionsMenu.findItem(R.id.privacy_level_none);
+                itemPrivacyLevelN.setChecked(true);
+                break;
+            case "L":
+                MenuItem itemPrivacyLevelL = optionsMenu.findItem(R.id.privacy_level_low);
+                itemPrivacyLevelL.setChecked(true);
+                break;
+            case "M":
+                MenuItem itemPrivacyLevelM = optionsMenu.findItem(R.id.privacy_level_medium);
+                itemPrivacyLevelM.setChecked(true);
+                break;
+            case "H":
+                MenuItem itemPrivacyLevelH = optionsMenu.findItem(R.id.privacy_level_high);
+                itemPrivacyLevelH.setChecked(true);
+                break;
+        }
+
         return true;
     }
     @Override
@@ -472,24 +476,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     item.setChecked(false);
                     preferenceManager.setUserLocationPermission(false);
                 }
-                else item.setChecked(true);
+                else {
+                    item.setChecked(true);
                     preferenceManager.setUserLocationPermission(true);
+                }
                 return true;
             case R.id.privacy_level_none:
                 item.setChecked(true);
-                preferenceManager.setPrivacyLevel("None");
+                preferenceManager.setPrivacyLevel("N");
                 return true;
             case R.id.privacy_level_low:
                 item.setChecked(true);
-                preferenceManager.setPrivacyLevel("Low");
+                preferenceManager.setPrivacyLevel("L");
                 return true;
             case R.id.privacy_level_medium:
                 item.setChecked(true);
-                preferenceManager.setPrivacyLevel("Medium");
+                preferenceManager.setPrivacyLevel("M");
                 return true;
             case R.id.privacy_level_high:
                 item.setChecked(true);
-                preferenceManager.setPrivacyLevel("High");
+                preferenceManager.setPrivacyLevel("H");
                 return true;
 //            case R.id.privacy_radius_200:
 //                item.setChecked(true);

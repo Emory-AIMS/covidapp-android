@@ -32,6 +32,11 @@ public class StorageManager extends SQLiteOpenHelper {
         public static final String COLUMN_NAME_DISTANCE_VALUE = "distance_val";
         public static final String COLUMN_NAME_X = "x";
         public static final String COLUMN_NAME_Y = "y";
+        public static final String COLUMN_NAME_PERTURBED_X = "perturbed_x";
+        public static final String COLUMN_NAME_PERTURBED_Y = "perturbed_y";
+//        public static final String COLUMN_NAME_RADIUS = "radius";
+//        public static final String COLUMN_NAME_EPSILON = "eps";
+        public static final String COLUMN_NAME_PRIVACY_LEVEL = "privacy_level";
 
         public static final String COUNT_BEACONS = "countBeacons";
 
@@ -48,7 +53,12 @@ public class StorageManager extends SQLiteOpenHelper {
                     BeaconEntry.COLUMN_NAME_DISTANCE_VALUE + " REAL DEFAULT 0," +
                     BeaconEntry.COLUMN_NAME_TIMESTAMP + " INTEGER," +
                     BeaconEntry.COLUMN_NAME_X + " REAL DEFAULT 0," +
-                    BeaconEntry.COLUMN_NAME_Y + " REAL DEFAULT 0)";
+                    BeaconEntry.COLUMN_NAME_Y + " REAL DEFAULT 0, " +
+                    BeaconEntry.COLUMN_NAME_PERTURBED_X + " REAL DEFAULT 0, " +
+                    BeaconEntry.COLUMN_NAME_PERTURBED_Y + " REAL DEFAULT 0, " +
+//                    BeaconEntry.COLUMN_NAME_RADIUS + " REAL DEFAULT 0, " +
+//                    BeaconEntry.COLUMN_NAME_EPSILON + " REAL DEFAULT 0, " +
+                    BeaconEntry.COLUMN_NAME_PRIVACY_LEVEL + " CHAR)";
 
     private static final String SQL_CREATE_IDENTIFIER_INDEX =
             "CREATE INDEX " + BeaconEntry.INDEX_NAME_IDENTIFIER + " ON " +
@@ -98,6 +108,11 @@ public class StorageManager extends SQLiteOpenHelper {
         values.put(BeaconEntry.COLUMN_NAME_DISTANCE_VALUE, beacon.distanceValue);
         values.put(BeaconEntry.COLUMN_NAME_X, beacon.x);
         values.put(BeaconEntry.COLUMN_NAME_Y, beacon.y);
+        values.put(BeaconEntry.COLUMN_NAME_PERTURBED_X, beacon.perturbed_x);
+        values.put(BeaconEntry.COLUMN_NAME_PERTURBED_Y, beacon.perturbed_y);
+//        values.put(BeaconEntry.COLUMN_NAME_RADIUS, beacon.radius);
+//        values.put(BeaconEntry.COLUMN_NAME_EPSILON, beacon.eps);
+        values.put(BeaconEntry.COLUMN_NAME_PRIVACY_LEVEL, beacon.privacyLevel);
 
         long newRowId = db.insert(BeaconEntry.TABLE_NAME, null, values);
     }
@@ -124,7 +139,13 @@ public class StorageManager extends SQLiteOpenHelper {
                 BeaconEntry.COLUMN_NAME_DISTANCE,
                 BeaconEntry.COLUMN_NAME_DISTANCE_VALUE,
                 BeaconEntry.COLUMN_NAME_X,
-                BeaconEntry.COLUMN_NAME_Y
+                BeaconEntry.COLUMN_NAME_Y,
+                BeaconEntry.COLUMN_NAME_PERTURBED_X,
+                BeaconEntry.COLUMN_NAME_PERTURBED_Y,
+//                BeaconEntry.COLUMN_NAME_RADIUS,
+//                BeaconEntry.COLUMN_NAME_EPSILON
+                BeaconEntry.COLUMN_NAME_PRIVACY_LEVEL
+
         };
 
         String selection = BeaconEntry.COLUMN_NAME_TIMESTAMP + " >= ?";
@@ -149,7 +170,12 @@ public class StorageManager extends SQLiteOpenHelper {
                     Distance.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_DISTANCE))),
                     cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_DISTANCE_VALUE)),
                     cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_X)),
-                    cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_Y))
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_Y)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_PERTURBED_X)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_PERTURBED_Y)),
+//                    cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_RADIUS)),
+//                    cursor.getDouble(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_EPSILON))
+                    cursor.getString(cursor.getColumnIndexOrThrow(BeaconEntry.COLUMN_NAME_PRIVACY_LEVEL))
             );
 
             beacons.add(beacon);

@@ -53,6 +53,9 @@ public class PreferenceManager {
     private static final String ALERT_LANGUAGE = "alert_language";
     private static final String ALERT_FILTER_ID = "alert_filter_id";
     private static final String ALERT_CONTENT = "alert_content";
+//    private static final String PRIVACY_RADIUS = "privacy_radius";
+    private static final String PRIVACY_LEVEL = "privacy_level";
+
 
 
     /***** Key shared preferences "WelcomeActivity" *******/
@@ -144,6 +147,9 @@ public class PreferenceManager {
         int warningLevel                     = getWarningLevel();
         JSONObject alertContent              = getAlertContent();
 
+        String privacy_level                 = getPrivacyLevel();
+//        float privacy_radius                 = getPrivacyRadius();
+
         try {
 
             //create an encryption master key and store it in the Android KeyStore
@@ -180,6 +186,8 @@ public class PreferenceManager {
             setAlertLanguage(language);
             setWarningLevel(warningLevel);
             setAlertContent(alertContent);
+            setPrivacyLevel(privacy_level);
+//            setPrivacyRadius(privacy_radius);
 
         } catch (Exception e){
 
@@ -187,7 +195,6 @@ public class PreferenceManager {
         }
 
     }
-
 
 
     /******** functions on Shared Preference "WelcomeActivity" *************/
@@ -299,6 +306,24 @@ public class PreferenceManager {
     public boolean getUserLocationPermission() {
         return pref.getBoolean(USER_LOCATION_PERMISSION, false);
     }
+
+    public void setPrivacyLevel(String privacyLevel) {
+        editor.putString(PRIVACY_LEVEL, privacyLevel);
+        editor.commit();
+    }
+
+    public String getPrivacyLevel() {
+        return pref.getString(PRIVACY_LEVEL, "M");
+    }
+
+//    public void setPrivacyRadius(float privacyRadius) {
+//        editor.putFloat(PRIVACY_LEVEL, privacyRadius);
+//        editor.commit();
+//    }
+
+//    public float getPrivacyRadius() {
+//        return pref.getFloat(PRIVACY_RADIUS, 500);
+//    }
 
     public void setChallenge(String challenge) {
         editor.putString(CHALLENGE, challenge);

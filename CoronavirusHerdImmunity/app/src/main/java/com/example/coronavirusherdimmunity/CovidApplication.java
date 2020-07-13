@@ -38,6 +38,7 @@ import com.example.coronavirusherdimmunity.notification.NotificationData;
 import com.example.coronavirusherdimmunity.notification.channels.PermissionNotificationChannel;
 import com.example.coronavirusherdimmunity.resourceprovider.ResourceProviderDefault;
 import com.example.coronavirusherdimmunity.utils.BeaconDto;
+import com.example.coronavirusherdimmunity.utils.GeoInd;
 import com.example.coronavirusherdimmunity.utils.PermissionRequest;
 import com.example.coronavirusherdimmunity.utils.StorageManager;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
@@ -374,6 +375,9 @@ public class CovidApplication extends Application implements BootstrapNotifier, 
                 final List<BeaconDto> beaconDtos = new ArrayList<>();
                 double x = 0;
                 double y = 0;
+                double perturbed_x = 0;
+                double perturbed_y = 0;
+                String privacyLevel = "";
                 for (Beacon beacon : beacons) {
                     if (beacon.getId1().toString().equals(BEACON_ID)) {
 
@@ -401,9 +405,20 @@ public class CovidApplication extends Application implements BootstrapNotifier, 
                                     Location location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
                                     x = (location == null ? 0 : location.getLatitude());
                                     y = (location == null ? 0 : location.getLongitude());
+                                    GeoInd geoInd = new GeoInd();
+                                    privacyLevel = preferenceManager.getPrivacyLevel();
+                                    if(!privacyLevel.equals("N")) {  // add noise if privacy level is not None
+                                        geoInd.perturbLocaion(location, privacyLevel);
+                                        perturbed_x = (location == null ? 0 : location.getLatitude());
+                                        perturbed_y = (location == null ? 0 : location.getLongitude());
+                                    }
+                                    else {
+                                        perturbed_x = x;
+                                        perturbed_y = y;
+                                    }
                                 }
                             }
-                            BeaconDto beaconDto = new BeaconDto(deviceId, beacon.getRssi(), distance, beacon.getDistance(), x, y);
+                            BeaconDto beaconDto = new BeaconDto(deviceId, beacon.getRssi(), distance, beacon.getDistance(), x, y, perturbed_x, perturbed_y, privacyLevel);
                             beaconDtos.add(beaconDto);
                         }
                     }
