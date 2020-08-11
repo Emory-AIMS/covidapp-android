@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/report_status"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="top"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/layout_buttons"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="30"
+            tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:id="@+id/tv_scanner_success"
+                    style="@style/intro_subtitle"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/update_status"
+                    android:textAlignment="center"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+        </LinearLayout>
+
+        <!--        <Button-->
+<!--            android:id="@+id/button_back"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/ic_floating_button"-->
+<!--            tools:layout_editor_absoluteX="7dp"-->
+<!--            tools:layout_editor_absoluteY="629dp"-->
+<!--            tools:ignore="MissingConstraints" />-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/layout_bottom"
+            app:layout_constraintTop_toBottomOf="@+id/report_status"
+            app:layout_constraintVertical_weight="55"
+            tools:layout_editor_absoluteX="0dp">
+
+                <Button
+                    android:id="@+id/bt_confirm_covid"
+                    style="@style/button_primary"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/button_red"
+                    android:text="@string/bt_confirm_covid"
+                    app:layout_constraintBottom_toTopOf="@+id/bt_negative_covid"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_weight="20" />
+
+                <Button
+                    android:id="@+id/bt_negative_covid"
+                    style="@style/button_primary"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/button_negative"
+                    android:text="@string/bt_negative_covid"
+                    app:layout_constraintBottom_toTopOf="@+id/bt_recover_covid"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_confirm_covid"
+                    app:layout_constraintVertical_weight="20" />
+
+                <Button
+                    android:id="@+id/bt_recover_covid"
+                    style="@style/button_primary"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/button_green"
+                    android:text="@string/bt_recover_covid"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_negative_covid"
+                    app:layout_constraintVertical_weight="60" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:minHeight="60dp"
+            android:layout_gravity="top"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_weight="15">
+                        <Button
+                            android:id="@+id/button_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_floating_button"
+                            tools:layout_editor_absoluteX="7dp"
+                            tools:layout_editor_absoluteY="629dp"
+                            tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

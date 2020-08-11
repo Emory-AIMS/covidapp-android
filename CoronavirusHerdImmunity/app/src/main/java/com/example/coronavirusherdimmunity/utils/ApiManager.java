@@ -37,6 +37,7 @@ import org.json.simple.JSONValue;
 public class ApiManager {
 
     private static final String baseEndoint = "http://170.140.147.96";
+//private static final String baseEndoint = "http://192.168.1.92";
 //    private static final String baseEndoint = " https://api.coronaviruscheck.org";
 //
     private static final MediaType JSONContentType = MediaType.parse("application/json; charset=utf-8");
@@ -181,7 +182,7 @@ public class ApiManager {
         return null;
     }
 
-    private static class HttpInterceptor implements Interceptor {
+    public static class HttpInterceptor implements Interceptor {
 
         @Override
         public Response intercept(Chain chain) throws IOException {
@@ -220,7 +221,7 @@ public class ApiManager {
                 builder.header("Authorization", String.format("Bearer %s", token));
         }
 
-        private String refreshToken() throws JSONException {
+        public String refreshToken() throws JSONException {
             //Refresh token, synchronously, save it, and return result code
             //you might use retrofit here
             String deviceUUID = new PreferenceManager(CovidApplication.getContext()).getDeviceUUID();
@@ -285,5 +286,42 @@ public class ApiManager {
             Log.d("CHI", "EXCEPTION downloading url");
         }
         return null;
+    }
+
+
+    public static Response updateUserStatus(long deviceId, Integer newStatus, String authToken){
+
+        /****** Endpoint *****/
+        String endpoint = baseEndoint + "/status";
+
+        /****** Header *******/
+        //String h_contenttype = JSONContentType.toString();       //Headers: ‘Content-Type: application/json’
+        String h_auth_token = " Bearer " + authToken;              //Headers: ‘Authorization: Bearer <JWT>’
+
+        /****** Body ********/
+        Map body = new HashMap();
+        body.put("device_id", deviceId);
+        body.put("status", newStatus.toString());
+
+        OkHttpClient client = new OkHttpClient();
+
+        /* create request to send */
+        RequestBody rq = RequestBody.create(JSONContentType, JSONValue.toJSONString(body));
+        Request request = new Request.Builder()
+                .url(endpoint)
+                .addHeader("Authorization", h_auth_token)
+                .post(rq)
+                .build();
+
+        /****** Response *******/
+        Response response = null;
+        try {
+            //Invokes the request immediately, and blocks until the response can be processed or is in error
+            response = client.newCall(request).execute();            // response
+
+        }catch(Exception e){
+            Log.d("API Rest", "Exception on updateUserStatus: " + e);
+        }
+        return response;
     }
 }

@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/side_margin"
-                android:background="@color/gray_background">
+                android:background="@color/white">
 
                 <LinearLayout
                     android:id="@+id/background_color"
@@ -35,9 +35,10 @@
                     <TextView
                         android:id="@+id/title"
                         style="@style/intro_title"
+                        android:layout_marginTop="30dp"
                         android:layout_marginBottom="80dp"
-                        android:layout_marginTop="70dp"
-                        android:textSize="35sp" />
+                        android:textSize="35sp"
+                        android:gravity="center"/>
 
                 </LinearLayout>
 
@@ -73,35 +74,133 @@
                 </LinearLayout>
 
 
-
-                <ImageView
-                    android:id="@+id/qr_code"
-                    android:contentDescription="@string/qr_code"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="0dp"
-                    android:paddingBottom="0dp"/>
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_gray"
+                    android:orientation="vertical">
 
-                <Button style="@style/button_primary"
-                    android:id="@+id/button_show_id"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/button_secondary"
-                    android:textColor="@color/colorPrimary"
-                    android:text="@string/show_id"/>
 
-                <TextView
-                    style="@style/intro_subtitle"
-                    android:textSize="13sp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginEnd="80dp"
-                    android:gravity="center_horizontal|top"
-                    android:text="@string/id_explaination"/>
+                    <!--                    <TextView-->
+                    <!--                        style="@style/intro_subtitle"-->
+                    <!--                        android:layout_marginBottom="15dp"-->
+                    <!--                        android:layout_marginTop="15dp"-->
+                    <!--                        android:textSize="16sp"-->
+                    <!--                        android:gravity="center_vertical"-->
+                    <!--                        android:text="@string/share_location"-->
+                    <!--                        -->
+                    <!--                        android:textStyle="bold" />-->
+
+                    <Switch
+                        android:id="@+id/switch_share_location"
+                        style="@style/intro_subtitle"
+                        android:switchMinWidth="52dp"
+                        android:theme="@style/SwitchTheme"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:checked="true"
+                        android:gravity="left"
+                        android:text="@string/share_location"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        style="@style/divider"
+                        android:layout_height="1dp" />
+
+                    <TextView
+                        android:id="@+id/privacy_level"
+                        style="@style/intro_subtitle"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="15dp"
+                        android:drawableEnd="@drawable/button_shadow"
+                        android:gravity="center_vertical"
+                        android:text="@string/privacy_setting"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:clickable="true"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/button_change_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/background_gray" >
+
+
+                    <TextView
+                        style="@style/intro_subtitle"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:text="@string/update_status"
+                        android:drawableEnd="@drawable/button_shadow"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!--                <LinearLayout-->
+<!--                    android:id="@+id/button_privacy_setting"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginEnd="30dp"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:background="@drawable/background_gray" >-->
+
+
+<!--                    <TextView-->
+<!--                        style="@style/intro_subtitle"-->
+<!--                        android:layout_marginBottom="15dp"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:text="@string/privacy_setting"-->
+<!--                        android:drawableEnd="@drawable/button_shadow"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                </LinearLayout>-->
+
+
+                <!--                <ImageView-->
+<!--                    android:id="@+id/qr_code"-->
+<!--                    android:contentDescription="@string/qr_code"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="0dp"-->
+<!--                    android:paddingBottom="0dp"/>-->
+
+<!--                <Button style="@style/button_primary"-->
+<!--                    android:id="@+id/button_show_id"-->
+<!--                    android:layout_marginStart="40dp"-->
+<!--                    android:layout_marginEnd="40dp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/button_secondary"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:text="@string/show_id"/>-->
+
+<!--                <TextView-->
+<!--                    style="@style/intro_subtitle"-->
+<!--                    android:textSize="13sp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginStart="80dp"-->
+<!--                    android:layout_marginEnd="80dp"-->
+<!--                    android:gravity="center_horizontal|top"-->
+<!--                    android:text="@string/id_explaination"/>-->
 
             </LinearLayout>
 
@@ -228,23 +327,23 @@
                 android:background="@drawable/button_secondary"
                 android:textColor="@color/colorPrimary"
                 android:text="@string/how_it_works_no_emoji"/>
-        <!-- FOR TESTING -->
-        <Button
-            android:id="@+id/openMonitoring"
-            android:text="DEBUG"
-            android:layout_width="0dp"
-            android:layout_height="0dp" />
+            <!-- FOR TESTING -->
+            <Button
+                android:id="@+id/openMonitoring"
+                android:text="DEBUG"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
 
     </LinearLayout>
 
 </ScrollView>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gray_background"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/gray_background"-->
+<!--        android:minHeight="?attr/actionBarSize"-->
+<!--        android:theme="?attr/actionBarTheme" />-->
 
 </RelativeLayout>

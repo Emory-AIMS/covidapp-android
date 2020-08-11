@@ -209,6 +209,9 @@
         <item name="android:textColor"> @color/colorTextDark </item>
     </style>
 
+    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlActivated">#F97164</item>
+    </style>
 
 
 </resources>

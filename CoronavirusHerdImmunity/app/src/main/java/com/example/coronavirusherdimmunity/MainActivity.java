@@ -1,7 +1,6 @@
 package com.example.coronavirusherdimmunity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,14 +13,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.PopupMenu;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 //import android.widget.Toolbar;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +31,6 @@ import com.example.coronavirusherdimmunity.models.CovidDialog;
 import com.example.coronavirusherdimmunity.models.TouchListener;
 import com.example.coronavirusherdimmunity.utils.ApiManager;
 import com.example.coronavirusherdimmunity.utils.PermissionRequest;
-import com.example.coronavirusherdimmunity.utils.QRCodeGenerator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -67,15 +65,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         preferenceManager = new PreferenceManager(this);
         preferenceManager.setFirstTimeLaunch(false);
 
-        Toolbar toolbar = findViewById(id.toolbar);
-        toolbar.setTitle("");
-
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(id.toolbar);
+//        toolbar.setTitle("");
+//
+//        setSupportActionBar(toolbar);
 
 
         // De-comment to test different statuses
         //preferenceManager.setPatientStatus(0);
-        this.writeQRCode();
+//        this.writeQRCode();
 
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -137,8 +135,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         /* BUTTONS */
 
-        findViewById(id.button_show_id).setOnClickListener(this);
-        findViewById(id.button_more_info).setOnClickListener(this);
+//        findViewById(id.button_show_id).setOnClickListener(this);
+        findViewById(R.id.button_change_status).setOnClickListener(this);
+        findViewById(R.id.button_more_info).setOnClickListener(this);
         findViewById(R.id.how_it_works).setOnClickListener(this);
         findViewById(R.id.facebook).setOnClickListener(this);
         findViewById(R.id.twitter).setOnClickListener(this);
@@ -148,6 +147,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.sms).setOnClickListener(this);
         findViewById(R.id.mail).setOnClickListener(this);
         findViewById(R.id.other).setOnClickListener(this);
+        TextView privacy_level = findViewById(R.id.privacy_level);
+        findViewById(R.id.privacy_level).setOnClickListener(this);
+
+        Switch location_share_switch = (Switch)findViewById(R.id.switch_share_location);
+        location_share_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    preferenceManager.setUserLocationPermission(true);
+                    Log.d("MainActivity", "location permisson enabled: " + preferenceManager.getUserLocationPermission());
+                }
+                else {
+                    preferenceManager.setUserLocationPermission(false);
+                    Log.d("MainActivity", "location permisson enabled: " + preferenceManager.getUserLocationPermission());
+
+                }
+            }
+        });
     }
 
     BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -186,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void updateMainActivity() {
 
         writePatientInfo();
-        writeQRCode();
+//        writeQRCode();
     }
 
     public void writePatientInfo() {
@@ -211,8 +228,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             statusTextView.setText(Html.fromHtml(status.getTitle()));
         }
         if (status.toInt() == 2 || status.toInt() > 3) {
-            descriptionTextView.setText(Html.fromHtml("<b>" + dont_panic + "</b><br/>" +
-                    status.getDescription() + "<br/><b>" + call_emergency + "</b>"));
+            statusTextView.setText(Html.fromHtml(status.getTitle()));
+//            descriptionTextView.setText(Html.fromHtml("<b>" + dont_panic + "</b><br/>" +
+//                    status.getDescription() + "<br/><b>" + call_emergency + "</b>"));
         }
     }
 
@@ -223,23 +241,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         interactionsTextView.setText(String.valueOf(interactions));
     }*/
 
-    private void writeQRCode() {
-        ImageView qrImage = (ImageView) findViewById(id.qr_code);
-
-        long deviceId = new PreferenceManager(mContext.getApplicationContext()).getDeviceId();
-
-        QRCodeGenerator generator = new QRCodeGenerator(mContext);
-        generator.generateQRCode(deviceId, qrImage);
-    }
+//    private void writeQRCode() {
+//        ImageView qrImage = (ImageView) findViewById(id.qr_code);
+//
+//        long deviceId = new PreferenceManager(mContext.getApplicationContext()).getDeviceId();
+//
+//        QRCodeGenerator generator = new QRCodeGenerator(mContext);
+//        generator.generateQRCode(deviceId, qrImage);
+//    }
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
 
-            case id.button_show_id:
+            case id.button_change_status:
                 TouchListener.buttonClickEffect(v);   //add click button effect
-                showId();
+                startActivity(new Intent(MainActivity.this, ReportStatusActivity.class));
                 break;
 
             case id.button_more_info:
@@ -247,6 +265,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, MoreInfoActivity.class));
                 break;
 
+            case id.privacy_level:
+//                TouchListener.buttonClickEffect(v);   //add click button effect
+                showPrivacyLevelPopup(v);
+                break;
             case id.how_it_works:
                 TouchListener.buttonClickEffect(v);   //add click button effect
                 startActivity(new Intent(MainActivity.this, HowItWorksActivity.class));
@@ -288,6 +310,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+
+    private void showPrivacyLevelPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.inflate(R.menu.privacy_setting_menu);
+
+//      get the privacy parameter from preferenceManager and show in the menu
+        String privacy_level = preferenceManager.getPrivacyLevel();
+        switch (privacy_level) {
+            case "N":
+//                popup.getMenu().getItem(R.id.privacy_level_none).setChecked(true);
+
+                popup.getMenu().getItem(0).setChecked(true);
+                break;
+            case "L":
+                popup.getMenu().getItem(1).setChecked(true);
+                break;
+            case "M":
+                popup.getMenu().getItem(2).setChecked(true);
+                break;
+            case "H":
+                popup.getMenu().getItem(3).setChecked(true);
+                break;
+        }
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.privacy_level_none:
+                        item.setChecked(true);
+                        preferenceManager.setPrivacyLevel("N");
+                        return true;
+                    case R.id.privacy_level_low:
+                        item.setChecked(true);
+                        preferenceManager.setPrivacyLevel("L");
+                        return true;
+                    case R.id.privacy_level_medium:
+                        item.setChecked(true);
+                        preferenceManager.setPrivacyLevel("M");
+                        return true;
+                    case R.id.privacy_level_high:
+                        item.setChecked(true);
+                        preferenceManager.setPrivacyLevel("H");
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+        // Show the menu
+        popup.show();
     }
 
     private void shareToTwitter(String message) {
@@ -432,87 +505,87 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alert.show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu
-        getMenuInflater().inflate(R.menu.menu, menu);
-        Menu optionsMenu = menu;
-        //if the location permission is true, set the share location option checked
-        if (preferenceManager.getUserLocationPermission()) {
-
-            MenuItem itemShareLocation = optionsMenu.findItem(R.id.action_share_location);
-            itemShareLocation.setChecked(true);
-        }
-
-//      set the privacy parameter
-        String privacy_level = preferenceManager.getPrivacyLevel();
-        switch (privacy_level) {
-            case "N":
-                MenuItem itemPrivacyLevelN = optionsMenu.findItem(R.id.privacy_level_none);
-                itemPrivacyLevelN.setChecked(true);
-                break;
-            case "L":
-                MenuItem itemPrivacyLevelL = optionsMenu.findItem(R.id.privacy_level_low);
-                itemPrivacyLevelL.setChecked(true);
-                break;
-            case "M":
-                MenuItem itemPrivacyLevelM = optionsMenu.findItem(R.id.privacy_level_medium);
-                itemPrivacyLevelM.setChecked(true);
-                break;
-            case "H":
-                MenuItem itemPrivacyLevelH = optionsMenu.findItem(R.id.privacy_level_high);
-                itemPrivacyLevelH.setChecked(true);
-                break;
-        }
-
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks.
-        switch (item.getItemId()) {
-            case R.id.action_share_location:
-                if (item.isChecked()) {
-                    item.setChecked(false);
-                    preferenceManager.setUserLocationPermission(false);
-                }
-                else {
-                    item.setChecked(true);
-                    preferenceManager.setUserLocationPermission(true);
-                }
-                return true;
-            case R.id.privacy_level_none:
-                item.setChecked(true);
-                preferenceManager.setPrivacyLevel("N");
-                return true;
-            case R.id.privacy_level_low:
-                item.setChecked(true);
-                preferenceManager.setPrivacyLevel("L");
-                return true;
-            case R.id.privacy_level_medium:
-                item.setChecked(true);
-                preferenceManager.setPrivacyLevel("M");
-                return true;
-            case R.id.privacy_level_high:
-                item.setChecked(true);
-                preferenceManager.setPrivacyLevel("H");
-                return true;
-//            case R.id.privacy_radius_200:
-//                item.setChecked(true);
-//                preferenceManager.setPrivacyRadius(200);
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//        Menu optionsMenu = menu;
+//        //if the location permission is true, set the share location option checked
+//        if (preferenceManager.getUserLocationPermission()) {
+//
+//            MenuItem itemShareLocation = optionsMenu.findItem(R.id.action_share_location);
+//            itemShareLocation.setChecked(true);
+//        }
+//
+////      set the privacy parameter
+//        String privacy_level = preferenceManager.getPrivacyLevel();
+//        switch (privacy_level) {
+//            case "N":
+//                MenuItem itemPrivacyLevelN = optionsMenu.findItem(R.id.privacy_level_none);
+//                itemPrivacyLevelN.setChecked(true);
+//                break;
+//            case "L":
+//                MenuItem itemPrivacyLevelL = optionsMenu.findItem(R.id.privacy_level_low);
+//                itemPrivacyLevelL.setChecked(true);
+//                break;
+//            case "M":
+//                MenuItem itemPrivacyLevelM = optionsMenu.findItem(R.id.privacy_level_medium);
+//                itemPrivacyLevelM.setChecked(true);
+//                break;
+//            case "H":
+//                MenuItem itemPrivacyLevelH = optionsMenu.findItem(R.id.privacy_level_high);
+//                itemPrivacyLevelH.setChecked(true);
+//                break;
+//        }
+//
+//        return true;
+//    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks.
+//        switch (item.getItemId()) {
+//            case R.id.action_share_location:
+//                if (item.isChecked()) {
+//                    item.setChecked(false);
+//                    preferenceManager.setUserLocationPermission(false);
+//                }
+//                else {
+//                    item.setChecked(true);
+//                    preferenceManager.setUserLocationPermission(true);
+//                }
 //                return true;
-//            case R.id.privacy_radius_500:
+//            case R.id.privacy_level_none:
 //                item.setChecked(true);
-//                preferenceManager.setPrivacyRadius(500);
+//                preferenceManager.setPrivacyLevel("N");
 //                return true;
-//            case R.id.privacy_radius_800:
+//            case R.id.privacy_level_low:
 //                item.setChecked(true);
-//                preferenceManager.setPrivacyRadius(800);
+//                preferenceManager.setPrivacyLevel("L");
 //                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//            case R.id.privacy_level_medium:
+//                item.setChecked(true);
+//                preferenceManager.setPrivacyLevel("M");
+//                return true;
+//            case R.id.privacy_level_high:
+//                item.setChecked(true);
+//                preferenceManager.setPrivacyLevel("H");
+//                return true;
+////            case R.id.privacy_radius_200:
+////                item.setChecked(true);
+////                preferenceManager.setPrivacyRadius(200);
+////                return true;
+////            case R.id.privacy_radius_500:
+////                item.setChecked(true);
+////                preferenceManager.setPrivacyRadius(500);
+////                return true;
+////            case R.id.privacy_radius_800:
+////                item.setChecked(true);
+////                preferenceManager.setPrivacyRadius(800);
+////                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 }
 

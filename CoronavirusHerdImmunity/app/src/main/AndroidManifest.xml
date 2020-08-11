@@ -87,6 +87,11 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ReportStatusActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
         <service
             android:name="org.altbeacon.beacon.service.BeaconService"
             tools:node="replace">

@@ -99,17 +99,16 @@ public class BeaconDto {
             obj.put("s", String.format(Locale.getDefault(),"%.1f", this.distanceValue));
 
             if (this.perturbed_x != 0 && this.perturbed_y != 0) {
-                obj.put("x", String.format(Locale.getDefault(), "%.3f", this.perturbed_x));
-                obj.put("y", String.format(Locale.getDefault(), "%.3f", this.perturbed_y));
+                obj.put("x", String.format(Locale.getDefault(), "%.7f", this.perturbed_x));
+                obj.put("y", String.format(Locale.getDefault(), "%.7f", this.perturbed_y));
 //                obj.put("e", String.format(Locale.getDefault(),"%.1f", this.eps));
 //                obj.put("d", String.format(Locale.getDefault(),"%.1f", this.radius));
-                obj.put("l", this.privacyLevel);
             }
             else if(this.x != 0 && this.y != 0) {
-                obj.put("x", String.format(Locale.getDefault(), "%.3f", this.x));
-                obj.put("y", String.format(Locale.getDefault(), "%.3f", this.y));
+                obj.put("x", String.format(Locale.getDefault(), "%.7f", this.x));
+                obj.put("y", String.format(Locale.getDefault(), "%.7f", this.y));
             }
-
+            obj.put("l", this.privacyLevel);
 
             return obj;
         }catch (Exception e){

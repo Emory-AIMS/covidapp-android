@@ -4,9 +4,9 @@ import android.location.Location;
 public class GeoInd {
     private final double EARTH_RADIUS = 6378137; //in meters
     //  privacy level to epsilon
-    private final double low = 5.0;
-    private final double medium = 3.0;
-    private final double high = 1.0;
+    private final double low = 20.0;
+    private final double medium = 15.0;
+    private final double high = 5.0;
     private final double radius = 50.0; // default radius
 
     public void perturbLocaion(Location location, String level) {
