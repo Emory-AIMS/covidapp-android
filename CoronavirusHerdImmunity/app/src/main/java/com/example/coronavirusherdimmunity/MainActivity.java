@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.sms).setOnClickListener(this);
         findViewById(R.id.mail).setOnClickListener(this);
         findViewById(R.id.other).setOnClickListener(this);
-        TextView privacy_level = findViewById(R.id.privacy_level);
+//        TextView privacy_level = findViewById(R.id.privacy_level);
         findViewById(R.id.privacy_level).setOnClickListener(this);
 
         Switch location_share_switch = (Switch)findViewById(R.id.switch_share_location);

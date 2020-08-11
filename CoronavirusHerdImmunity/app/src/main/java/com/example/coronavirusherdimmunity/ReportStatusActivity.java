@@ -141,6 +141,7 @@ public class ReportStatusActivity extends Activity {
                                 Log.d("task_updateUserStatus","status has been changed");
                                 ret_value = "chg_st";
                                 updated = true; //exit while
+                                preferenceManager.setPatientStatus(new_status);
                                 break;
                             case 401:     // if jwt token is expired -> call refreshJwtToken and recall task_updateUserStatus
                                 Log.d("task_updateUserStatus","Jwt Token expired");
